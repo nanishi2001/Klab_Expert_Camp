@@ -48,5 +48,39 @@
 各ネットワーク機器が外部とやり取りする際の窓口のこと
 :::
 
+- - -
 
+## 開発環境とリファレンス実装の説明
+### 開発環境
+各自のLinux開発環境で作業
+* Ubuntu 20.04を推奨
+    * 実機or仮想環境のどちらでもOK(WindowsのWSL2で動作確認済み)
+    * Dockerで構築する場合は--privilegedまたは--cap-add=NET_ADMINが必要
+* 必要パッケージ(Ubuntuの場合)
+    * build-essential
+    * git
+    * iproute2
+    * iputlis-ping
+    * netcat-openbsd
+* 開発環境からインターネットへ接続できること
 
+### リファレンス実装
+
+https://github.com/pandax381/microps
+
+* 学習用のTCP/IPプロトコルスタック
+    * Ethernet/ARP/IP/ICMP/UDP/TCPをすべて自前で実装
+    * 10年くらい細々と作り続けている(5世代目くらい)
+    * C言語で4,5000行程度(一番大きなtcp.cが1500行)
+    * 教育用OSへの移植実績あり[GitHubリンク](https://github.com/pandax381/mikanos-net)
+* GitHubでレポジトリをforkしたものを手元にcloneする
+    * masterブランチが最新のコード
+    * 講義で解説するコードはこれを少しだけ簡略化している
+* チュートリアルのとおり動かしてみよう
+
+### microps
+ユーザアプリケーション用のライブラリとして実装
+* OSのプロトコルスタックを通さずにパケットを処理する
+
+### 初期コード
+いかのコミットおチェックアウトして初期コードとして使用する
